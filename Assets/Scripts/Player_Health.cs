@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_Health : MonoBehaviour
+public class Player_Health : MonoBehaviour, IDamageable
 {
     public float maxHealth = 10;
 
@@ -12,27 +12,15 @@ public class Player_Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        TakeDamage(1f);
-    //    }
-    //}
-
-    public void TakeDamage(float Damage)
-    {
-        currentHealth -= Damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
     private void Die()
     {
         Debug.Log("Player Death");
         //Die
+    }
+
+    float IDamageable.TakeDamage(float _damage)
+    {
+        currentHealth -= _damage;
+        return currentHealth;
     }
 }

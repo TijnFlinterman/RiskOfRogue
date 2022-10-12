@@ -3,33 +3,20 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
     public float movementSpeed = 4f;
-    public float movementSpeedUpDown = 4f;
+    public Rigidbody2D rb;
     Vector3 movespeed;
     Vector3 moveSpeedUpDown;
 
-    void Start()
+    private float horizontal, vertical;
+
+    void Update()
     {
-        movespeed = new Vector3(movementSpeed, 0, 0);
-        moveSpeedUpDown = new Vector3(0, movementSpeedUpDown, 0);
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position = transform.position + moveSpeedUpDown * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position = transform.position - movespeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position = transform.position - moveSpeedUpDown * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position = transform.position + movespeed * Time.deltaTime;
-        }
+        rb.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed);
     }
 }
