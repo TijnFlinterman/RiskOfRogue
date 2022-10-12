@@ -4,6 +4,7 @@ public class Player_Shooting : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private float speed;
 
     void Update()
     {
@@ -11,6 +12,7 @@ public class Player_Shooting : MonoBehaviour
         {
             Shoot();
         }
+     
     }
 
     private void Shoot()
